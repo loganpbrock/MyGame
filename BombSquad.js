@@ -12,7 +12,6 @@ const { create } = require('domain');
 // DECLARE GLOBAL VARIABLES
 let char;
 let gameMoves = Math.floor(Math.random() * (20 - 15 + 1) + 15);
-gameMoves = 9999;
 let startMove = gameMoves;
 let points = gameMoves * 1000 + 1;
 let currentDepartment;
@@ -326,7 +325,6 @@ const defuser = () => {
       validResponse();
       defuser();
     }
-    console.log(choice, wires[hotWire]);
     if (choice === wires[hotWire]) {
       winMessage();
     } else {
