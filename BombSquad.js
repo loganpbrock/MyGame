@@ -12,6 +12,7 @@ const { create } = require('domain');
 // DECLARE GLOBAL VARIABLES
 let char;
 let gameMoves = Math.floor(Math.random() * (20 - 15 + 1) + 15);
+gameMoves = 9999;
 let startMove = gameMoves;
 let points = gameMoves * 1000 + 1;
 let currentDepartment;
@@ -270,6 +271,7 @@ const winMessage = () => {
   console.log('  |   |  |       ||       |   _____| ||   _   | |     | |   |___ |       |    |   |  |   _   ||   |___   |       ||   _   |  |   |  ');
   console.log('  |___|  |_______||_______|  |_______||__| |__|  |___|  |_______||______|     |___|  |__| |__||_______|  |______| |__| |__|  |___|  ');
   console.log('')
+  console.log(`You earned ${points} points!!! Try to beat your best score! \n`)
   sleep(2000)
   gameRunning = false;
 }
@@ -314,6 +316,17 @@ const defuser = () => {
     console.log('Green (g) \n');
     console.log('Blue  (b) \n');
     choice = input();
+    if(choice === 'r') {
+      choice = 'Red';
+    } else if(choice === 'g') {
+      choice = 'Green'
+    } else if(choice === 'b') {
+      choice = 'Blue'
+    } else {
+      validResponse();
+      defuser();
+    }
+    console.log(choice, wires[hotWire]);
     if (choice === wires[hotWire]) {
       winMessage();
     } else {
@@ -325,7 +338,6 @@ const defuser = () => {
     input("Press enter key to continue")
   }
 }
-
 
 
 
@@ -359,4 +371,5 @@ while (gameRunning === true) {
     failMessage();
   }
   gameMoves--;
+  points -= 25;
 }
